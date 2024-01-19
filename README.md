@@ -3,8 +3,11 @@
 f1 -> leftclick
 
 Rshift+c -> focus vscode windows and cycle through them
+
 RShift+t -> windows terminal/git bash
+
 RShift+e -> edge
+
 RShift+v -> visual studio
 
 edge: ` to reset cursor to escape mode
