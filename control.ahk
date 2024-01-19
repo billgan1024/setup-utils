@@ -76,9 +76,9 @@ RShift & c::
 }
 RShift & e::
 {
-    ; focus edge
-    if WinExist("ahk_exe msedge.exe") {
-        WinActivate("ahk_exe msedge.exe")
+    ; focus chrome
+    if WinExist("ahk_exe chrome.exe") {
+        WinActivate("ahk_exe chrome.exe")
         Sleep(10)
         center_mouse()
     }
