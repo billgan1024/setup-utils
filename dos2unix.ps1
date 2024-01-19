@@ -1,8 +1,8 @@
 function Convert-Files($source, $dest) {
     # get all files in the current directory recursively 
     Get-ChildItem -File -Recurse |
-        Where-Object {$_.extension -match "^.(py|js|css|html)$"} |
-        ForEach-Object {
+    Where-Object { $_.extension -match "^.(py|js|css|html)$" } |
+    ForEach-Object {
         Convert-File $_.FullName $source $dest
     }
 }
