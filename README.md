@@ -2,6 +2,8 @@
 
 f1 -> leftclick
 
+blender: win -> middle mouse
+
 Rshift+c -> focus vscode windows and cycle through them
 
 RShift+t -> windows terminal/git bash
