@@ -20,8 +20,8 @@ RShift & t::
     ; terminal/teams
     if WinExist("ahk_exe WindowsTerminal.exe") {
         WinActivate("ahk_exe WindowsTerminal.exe")
-    } else if WinExist("ahk_exe ms-teams.exe") {
-        WinActivate("ahk_exe ms-teams.exe")
+    } else if WinExist("ahk_exe teams.exe") {
+        WinActivate("ahk_exe teams.exe")
     }
 }
 
@@ -33,19 +33,19 @@ RShift & g::
 }
 ; arrays are fucking 1-indexed
 ; and you need "global" for updating a global variable lmfao
-list := WinGetList("ahk_exe Code.exe")
+code_list := WinGetList("ahk_exe Code.exe")
 
-SetTimer(UpdateList, 1000)
+SetTimer(UpdateCodeList, 1000)
 
 
-UpdateList() {
-    global list
+UpdateCodeList() {
+    global code_list
     global code_index
     ; new_list tends to shuffle the order, so only assign to list if size changes
     new_list := WinGetList("ahk_exe Code.exe")
-    if new_list.Length != list.Length {
-        list := new_list
-        if code_index > list.Length {
+    if new_list.Length != code_list.Length {
+        code_list := new_list
+        if code_index > code_list.Length {
             code_index := 1
         }
     }
@@ -60,49 +60,91 @@ RShift & c::
     ; }
     ; WinGet, WinList, List, ahk_class PSDocC
     ; https://www.autohotkey.com/docs/v1/misc/WinTitle.htm#ahk_id
+    code()
+}
+CapsLock & c:: {
+    code()
+}
+
+code() {
+
     global code_index
-    global list
+    global code_list
     ; list := WinGetList("ahk_exe Code.exe")
     if !WinActive("ahk_exe Code.exe") {
         ; MsgBox(list[code_index])
-        WinActivate("ahk_id " list[code_index])
+        WinActivate("ahk_id " code_list[code_index])
     } else {
         code_index++
-        if code_index == list.Length + 1 {
+        if code_index == code_list.Length + 1 {
             code_index := 1
         }
-        WinActivate("ahk_id " list[code_index])
+        WinActivate("ahk_id " code_list[code_index])
     }
 }
-chrome := false
+
 RShift & e::
 {
-    ; chrome or edge
-    global chrome
-    chrome := !chrome
-    if chrome {
-        if WinExist("ahk_exe chrome.exe") {
-            WinActivate("ahk_exe chrome.exe")
-        }
-    } else {
+    activate("ahk_exe msedge.exe")
+}
 
-        if WinExist("ahk_exe msedge.exe") {
-            WinActivate("ahk_exe msedge.exe")
+CapsLock & e::
+{
+    activate("ahk_exe msedge.exe")
+}
+
+activate(winTitle) {
+    if WinExist(winTitle) {
+        WinActivate(winTitle)
+    }
+}
+
+
+explorer_index := 1
+explorer_list := WinGetList("ahk_class CabinetWClass")
+
+SetTimer(UpdateExplorerList, 1000)
+
+
+UpdateExplorerList() {
+    global explorer_list
+    global explorer_index
+    new_list := WinGetList("ahk_class CabinetWClass")
+    if new_list.Length != explorer_list.Length {
+        explorer_list := new_list
+        if explorer_index > explorer_list.Length {
+            explorer_index := 1
         }
     }
 }
-RShift & f::
-{
-    ; focus file explorer
-    ; ok apparently explorer.exe is the same as the taskbar
-    ; so use ahk_class instead
-    WinActivate("ahk_class CabinetWClass")
+
+explorer_index := 1
+RShift & f:: {
+    explorer()
 }
-RShift & v::
-{
-    if WinExist("ahk_exe devenv.exe") {
-        WinActivate("ahk_exe devenv.exe")
+CapsLock & f:: {
+    explorer()
+}
+explorer() {
+
+    global explorer_index
+    global explorer_list
+    if !WinActive("ahk_class CabinetWClass") {
+        WinActivate("ahk_id " explorer_list[explorer_index])
+    } else {
+        explorer_index++
+        if explorer_index == explorer_list.Length + 1 {
+            explorer_index := 1
+        }
+        WinActivate("ahk_id " explorer_list[explorer_index])
     }
+}
+
+RShift & v:: {
+    activate("ahk_exe devenv.exe")
+}
+CapsLock & v:: {
+    activate("ahk_exe devenv.exe")
 }
 
 ; F2:: {
