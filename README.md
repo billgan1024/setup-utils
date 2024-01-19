@@ -4,6 +4,8 @@ f1 -> leftclick
 
 blender: win -> middle mouse
 
+edge, chrome: ctrl+p -> search tabs
+
 Rshift+c -> focus vscode windows and cycle through them
 
 RShift+t -> windows terminal/git bash
