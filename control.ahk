@@ -81,7 +81,6 @@ RShift & e::
     global chrome
     chrome := !chrome
     if chrome {
-
         if WinExist("ahk_exe chrome.exe") {
             WinActivate("ahk_exe chrome.exe")
         }
