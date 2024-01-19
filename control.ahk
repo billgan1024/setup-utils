@@ -74,11 +74,22 @@ RShift & c::
         WinActivate("ahk_id " list[code_index])
     }
 }
+chrome := false
 RShift & e::
 {
-    ; focus chrome
-    if WinExist("ahk_exe chrome.exe") {
-        WinActivate("ahk_exe chrome.exe")
+    ; chrome or edge
+    global chrome
+    chrome := !chrome
+    if chrome {
+
+        if WinExist("ahk_exe chrome.exe") {
+            WinActivate("ahk_exe chrome.exe")
+        }
+    } else {
+
+        if WinExist("ahk_exe msedge.exe") {
+            WinActivate("ahk_exe msedge.exe")
+        }
     }
 }
 RShift & f::
