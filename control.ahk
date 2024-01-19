@@ -86,9 +86,9 @@ RShift & e::
 RShift & f::
 {
     ; focus file explorer
-    if WinExist("ahk_exe explorer.exe") {
-        WinActivate("ahk_exe explorer.exe")
-    }
+    ; ok apparently explorer.exe is the same as the taskbar
+    ; so use ahk_class instead
+    WinActivate("ahk_class CabinetWClass")
 }
 RShift & v::
 {
