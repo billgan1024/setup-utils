@@ -1,1 +1,0 @@
-Read-Host -Prompt "press any key to continue"

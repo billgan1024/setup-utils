@@ -79,8 +79,6 @@ RShift & e::
     ; focus chrome
     if WinExist("ahk_exe chrome.exe") {
         WinActivate("ahk_exe chrome.exe")
-        Sleep(10)
-        center_mouse()
     }
 }
 RShift & f::
