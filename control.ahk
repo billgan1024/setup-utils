@@ -17,14 +17,20 @@ SetCapsLockState("AlwaysOff")
 
 RShift & t::
 {
-    ; focus terminals
+    ; terminal/teams
     if WinExist("ahk_exe WindowsTerminal.exe") {
         WinActivate("ahk_exe WindowsTerminal.exe")
-    } else if WinExist("ahk_exe mintty.exe") {
-        WinActivate("ahk_exe mintty.exe")
+    } else if WinExist("ahk_exe ms-teams.exe") {
+        WinActivate("ahk_exe ms-teams.exe")
     }
 }
 
+RShift & g::
+{
+    if WinExist("ahk_exe mintty.exe") {
+        WinActivate("ahk_exe mintty.exe")
+    }
+}
 ; arrays are fucking 1-indexed
 ; and you need "global" for updating a global variable lmfao
 list := WinGetList("ahk_exe Code.exe")
@@ -73,6 +79,15 @@ RShift & e::
     ; focus edge
     if WinExist("ahk_exe msedge.exe") {
         WinActivate("ahk_exe msedge.exe")
+        Sleep(10)
+        center_mouse()
+    }
+}
+RShift & f::
+{
+    ; focus file explorer
+    if WinExist("ahk_exe explorer.exe") {
+        WinActivate("ahk_exe explorer.exe")
     }
 }
 RShift & v::
@@ -99,13 +114,21 @@ F1::LButton
 ; ` -> move mouse to center of screen and left click (gets out of weird vimium softlocks)
 `::
 {
+    center_mouse()
+}
+Delete::
+{
+    ; ctrl w
+    Send("^w")
+}
+#HotIf
+center_mouse() {
     MouseMove(1280, 720)
     Send("{LButton}")
     ; sleep 100 and press esc
     Sleep(100)
     Send("{Esc}")
 }
-#HotIf
 
 #HotIf WinActive("ahk_exe blender.exe")
 ; win -> middle mouse
