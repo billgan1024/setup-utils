@@ -85,12 +85,12 @@ code() {
 
 RShift & e::
 {
-    activate("ahk_exe msedge.exe")
+    activate("ahk_exe vivaldi.exe")
 }
 
 CapsLock & e::
 {
-    activate("ahk_exe msedge.exe")
+    activate("ahk_exe vivaldi.exe")
 }
 
 activate(winTitle) {
@@ -155,7 +155,7 @@ CapsLock & v:: {
 F1::LButton
 #HotIf
 
-#HotIf WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe")
+#HotIf WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe") or WinActive("ahk_exe vivaldi.exe")
 ; ctrl+p -> ctrl+shift+a
 ^p::
 {
@@ -166,7 +166,7 @@ F1::LButton
 {
     center_mouse()
 }
-Delete::
+F9::
 {
     ; ctrl w
     Send("^w")
