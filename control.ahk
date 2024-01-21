@@ -6,6 +6,7 @@ g.AddText(, "ahk control panel")
 ; f1 := g.AddCheckbox("Checked", "F1 -> LButton")
 g.AddText(, "click delay")
 uhc := g.AddCheckbox("", "uhc mode")
+combo_x := g.AddCheckbox("", "combo x")
 
 click_delay := g.AddSlider("", 40)
 click_delay.OnEvent("Change", click_changed)
@@ -13,7 +14,7 @@ click_delay.OnEvent("Change", click_changed)
 g.Show()
 
 
-SetCapsLockState("AlwaysOff")
+; SetCapsLockState("AlwaysOff")
 
 RShift & t::
 {
@@ -27,9 +28,7 @@ RShift & t::
 
 RShift & g::
 {
-    if WinExist("ahk_exe mintty.exe") {
-        WinActivate("ahk_exe mintty.exe")
-    }
+    activate("ahk_exe mintty.exe")
 }
 ; arrays are fucking 1-indexed
 ; and you need "global" for updating a global variable lmfao
@@ -62,25 +61,27 @@ RShift & c::
     ; https://www.autohotkey.com/docs/v1/misc/WinTitle.htm#ahk_id
     code()
 }
-CapsLock & c:: {
-    code()
-}
 
 code() {
-
-    global code_index
-    global code_list
-    ; list := WinGetList("ahk_exe Code.exe")
-    if !WinActive("ahk_exe Code.exe") {
-        ; MsgBox(list[code_index])
-        WinActivate("ahk_id " code_list[code_index])
-    } else {
-        code_index++
-        if code_index == code_list.Length + 1 {
-            code_index := 1
-        }
-        WinActivate("ahk_id " code_list[code_index])
+    if !WinExist("ahk_exe code.exe") {
+        Run("code")
     }
+    else {
+        global code_index
+        global code_list
+        ; list := WinGetList("ahk_exe Code.exe")
+        if !WinActive("ahk_exe Code.exe") {
+            ; MsgBox(list[code_index])
+            WinActivate("ahk_id " code_list[code_index])
+        } else {
+            code_index++
+            if code_index == code_list.Length + 1 {
+                code_index := 1
+            }
+            WinActivate("ahk_id " code_list[code_index])
+        }
+    }
+
 }
 
 RShift & e::
@@ -88,10 +89,6 @@ RShift & e::
     activate("ahk_exe vivaldi.exe")
 }
 
-CapsLock & e::
-{
-    activate("ahk_exe vivaldi.exe")
-}
 
 activate(winTitle) {
     if WinExist(winTitle) {
@@ -122,11 +119,10 @@ explorer_index := 1
 RShift & f:: {
     explorer()
 }
-CapsLock & f:: {
-    explorer()
-}
 explorer() {
-
+    if !WinExist("ahk_class CabinetWClass") {
+        return
+    }
     global explorer_index
     global explorer_list
     if !WinActive("ahk_class CabinetWClass") {
@@ -143,9 +139,12 @@ explorer() {
 RShift & v:: {
     activate("ahk_exe devenv.exe")
 }
-CapsLock & v:: {
-    activate("ahk_exe devenv.exe")
+
+#HotIf WinActive("ahk_exe AutoHotkey64.exe")
+Esc:: {
+    ExitApp()
 }
+#HotIf
 
 ; F2:: {
 ;     MsgBox(delay.Value)
@@ -153,6 +152,12 @@ CapsLock & v:: {
 
 #HotIf not WinActive("ahk_exe javaw.exe")
 F1::LButton
+#HotIf
+
+#HotIf WinActive("ahk_exe vivaldi.exe")
+^p:: {
+    Send("{F2}")
+}
 #HotIf
 
 #HotIf WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe") or WinActive("ahk_exe vivaldi.exe")
@@ -171,6 +176,11 @@ F9::
     ; ctrl w
     Send("^w")
 }
+F10::
+{
+    ; ctrl shift t
+    Send("^+t")
+}
 #HotIf
 center_mouse() {
     MouseMove(1280, 720)
@@ -187,6 +197,10 @@ LWin::MButton
 
 ; in vscode, f9 -> ctrl+shift+f9, then wait 1 second and press f9
 #HotIf WinActive("ahk_exe Code.exe")
+Esc:: {
+    Send("{Esc}")
+    SetCapsLockState("Off")
+}
 F9::
 {
     Send("^+{F9}")
@@ -249,7 +263,7 @@ XButton1::
     Send(8)
     Sleep(50)
     Send("{RButton}")
-    Sleep(100)
+    Sleep(150)
     Send("{RButton}")
     Sleep(50)
     Send("F")
@@ -270,6 +284,8 @@ c::
 }
 #HotIf
 
+NumpadMult::Volume_Down
+NumpadSub::Volume_Up
 
 #HotIf WinActive("ahk_exe javaw.exe")
 SetTimer(Auto, click_delay.Value)
@@ -309,6 +325,11 @@ AutoRight()
         MouseClick("right")
     }
 }
+
+
+#HotIf
+
+#HotIf combo_x.Value
 x::
 {
     global autoclick
@@ -327,8 +348,8 @@ x::
     autoclick := true
     return
 }
-
 #HotIf
+
 
 close(*) {
     ExitApp()
