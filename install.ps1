@@ -8,6 +8,7 @@ get "https://downloader.battle.net/download/getInstallerForGame?os=win&gameProgr
 
 get "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x86" discord.exe
 get "https://us.download.nvidia.com/GFE/GFEClient/3.27.0.120/GeForce_Experience_v3.27.0.120.exe"
+get "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
 
 set-executionpolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
 powershellget\install-module posh-git -Scope CurrentUser -Force

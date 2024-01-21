@@ -90,6 +90,8 @@ RShift & e::
 }
 
 
+
+
 activate(winTitle) {
     if WinExist(winTitle) {
         WinActivate(winTitle)
@@ -118,6 +120,10 @@ UpdateExplorerList() {
 explorer_index := 1
 RShift & f:: {
     explorer()
+}
+
+RShift & d:: {
+    activate("ahk_exe Discord.exe")
 }
 explorer() {
     if !WinExist("ahk_class CabinetWClass") {
@@ -234,7 +240,7 @@ autoclick := false
 
 
 ; you can't nest this inside #hotif javaw.exe
-#HotIf uhc.Value
+#HotIf uhc.Value and WinActive("ahk_exe javaw.exe")
 q::
 {
     Send("2")
@@ -329,7 +335,7 @@ AutoRight()
 
 #HotIf
 
-#HotIf combo_x.Value
+#HotIf combo_x.Value and WinActive("ahk_exe javaw.exe")
 x::
 {
     global autoclick
