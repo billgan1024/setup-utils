@@ -16,7 +16,7 @@ g.Show()
 
 ; SetCapsLockState("AlwaysOff")
 
-RShift & t::
+RAlt & t::
 {
     ; terminal/teams
     if WinExist("ahk_exe WindowsTerminal.exe") {
@@ -26,7 +26,7 @@ RShift & t::
     }
 }
 
-RShift & g::
+RAlt & g::
 {
     activate("ahk_exe mintty.exe")
 }
@@ -51,7 +51,7 @@ UpdateCodeList() {
 }
 
 code_index := 1
-RShift & c::
+RAlt & c::
 {
     ; ; focus code
     ; if WinExist("ahk_exe Code.exe") {
@@ -84,7 +84,7 @@ code() {
 
 }
 
-RShift & e::
+RAlt & e::
 {
     activate("ahk_exe vivaldi.exe")
 }
@@ -118,11 +118,11 @@ UpdateExplorerList() {
 }
 
 explorer_index := 1
-RShift & f:: {
+RAlt & f:: {
     explorer()
 }
 
-RShift & d:: {
+RAlt & d:: {
     activate("ahk_exe Discord.exe")
 }
 explorer() {
@@ -142,7 +142,7 @@ explorer() {
     }
 }
 
-RShift & v:: {
+RAlt & v:: {
     activate("ahk_exe devenv.exe")
 }
 
@@ -163,6 +163,11 @@ F1::LButton
 #HotIf WinActive("ahk_exe vivaldi.exe")
 ^p:: {
     Send("{F2}")
+}
+^LButton:: {
+    Send("{RButton}")
+    Sleep(50)
+    Send("o")
 }
 #HotIf
 #HotIf WinActive("ahk_exe devenv.exe")
@@ -193,8 +198,12 @@ F10::
     ; ctrl shift t
     Send("^+t")
 }
+
+CoordMode("Mouse", "Window") ; coordinates are now relative to the current window
 #HotIf
 center_mouse() {
+    ; MsgBox(A_ScreenWidth)
+    ; MsgBox(A_ScreenHeight)
     MouseMove(1280, 720)
     Send("{LButton}")
     ; sleep 100 and press esc
@@ -209,11 +218,6 @@ LWin::MButton
 
 ; in vscode, f9 -> ctrl+shift+f9, then wait 1 second and press f9
 #HotIf WinActive("ahk_exe Code.exe") or WinActive("ahk_exe devenv.exe")
-Esc::
-{
-    Send("{Esc}")
-    SetCapsLockState("Off")
-}
 F9::
 {
     Send("^+{F9}")
@@ -221,6 +225,14 @@ F9::
     Send("{Enter}")
     Sleep(50)
     Send("{F9}")
+}
+#HotIf
+
+#HotIf WinActive("ahk_exe Code.exe") or WinActive("ahk_exe devenv.exe") or WinActive("ahk_exe vivaldi.exe")
+Esc::
+{
+    Send("{Esc}")
+    SetCapsLockState("Off")
 }
 #HotIf
 
@@ -399,8 +411,8 @@ ShellRun(prms*)
 
 Pause::Volume_Mute
 
-; This is the key combo.
-#HotIf WinActive("ahk_exe explorer.exe")
+; opens the current dir in vscode (sometimes doesn't work tho)
+#HotIf WinActive("ahk_class CabinetWClass")
 `::
 {
     ; Cache the current clipboard contents.
@@ -423,6 +435,5 @@ Pause::Volume_Mute
     }
 
     ShellRun("C:\Users\" A_UserName "\AppData\Local\Programs\Microsoft VS Code\code.exe", path)
-    ; Run("C:\Users\pblpbl\AppData\Local\Programs\Microsoft VS Code\code.exe", path)
 }
 #HotIf
