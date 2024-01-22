@@ -165,6 +165,12 @@ F1::LButton
     Send("{F2}")
 }
 #HotIf
+#HotIf WinActive("ahk_exe devenv.exe")
+`::
+{
+    center_mouse()
+}
+#HotIf
 
 #HotIf WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe") or WinActive("ahk_exe vivaldi.exe")
 ; ctrl+p -> ctrl+shift+a
@@ -202,14 +208,17 @@ LWin::MButton
 #HotIf
 
 ; in vscode, f9 -> ctrl+shift+f9, then wait 1 second and press f9
-#HotIf WinActive("ahk_exe Code.exe")
-Esc:: {
+#HotIf WinActive("ahk_exe Code.exe") or WinActive("ahk_exe devenv.exe")
+Esc::
+{
     Send("{Esc}")
     SetCapsLockState("Off")
 }
 F9::
 {
     Send("^+{F9}")
+    Sleep(50)
+    Send("{Enter}")
     Sleep(50)
     Send("{F9}")
 }

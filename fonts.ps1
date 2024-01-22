@@ -1,8 +1,8 @@
 . ./helper.ps1
 get "https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip"
 get "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip"
-expand-archive -path JetBrainsMono-2.304.zip  -Force
-expand-archive -path FiraCode.zip -Force
+Expand-Archive -Path JetBrainsMono-2.304.zip  -Force
+Expand-Archive -Path FiraCode.zip -Force
 
 
 # find ttf files in the current directory and install them
@@ -16,6 +16,6 @@ $font_files = Get-ChildItem -Path "." -Recurse | Where-Object {
 foreach ($f in $font_files) {
     # write-output $f.Name
     $fname = $f.Name
-    write-host -ForegroundColor Green "installing $fname..."
+    Write-Host -ForegroundColor Green "installing $fname..."
     $fonts.CopyHere($f.FullName)
 }
