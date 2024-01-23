@@ -1,3 +1,5 @@
+
+
 # Example usage
 get "https://github.com/PowerShell/PowerShell/releases/download/v7.4.1/PowerShell-7.4.1-win-x64.msi"
 get "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user" vscode.exe
@@ -10,5 +12,5 @@ get "https://discord.com/api/downloads/distributions/app/installers/latest?chann
 get "https://us.download.nvidia.com/GFE/GFEClient/3.27.0.120/GeForce_Experience_v3.27.0.120.exe"
 get "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
 
-set-executionpolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
-powershellget\install-module posh-git -Scope CurrentUser -Force
+Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
+powershellget\Install-Module posh-git -Scope CurrentUser -Force

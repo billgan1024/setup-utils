@@ -1,5 +1,4 @@
 
-
 function get {
     param (
         [string]$url,

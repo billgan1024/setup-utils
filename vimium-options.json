@@ -1,0 +1,6 @@
+{
+  "keyMappings": "map J nextTab\nmap K previousTab\nmap h LinkHints.activateMode\nmap O Vomnibar.activate\nmap o Vomnibar.activateInNewTab",
+  "scrollStepSize": 80,
+  "settingsVersion": "2.0.5",
+  "exclusionRules": []
+}

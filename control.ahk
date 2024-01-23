@@ -90,8 +90,6 @@ RAlt & e::
 }
 
 
-
-
 activate(winTitle) {
     if WinExist(winTitle) {
         WinActivate(winTitle)
@@ -175,6 +173,11 @@ F1::LButton
 {
     center_mouse()
 }
++BackSpace:: {
+    ; send 4 backspaces
+    Send("{Backspace 4}")
+}
+
 #HotIf
 
 #HotIf WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe") or WinActive("ahk_exe vivaldi.exe")
@@ -222,8 +225,10 @@ F9::
 {
     Send("^+{F9}")
     Sleep(50)
-    Send("{Enter}")
-    Sleep(50)
+    if WinActive("ahk_exe devenv.exe") {
+        Send("{Enter}")
+        Sleep(50)
+    }
     Send("{F9}")
 }
 #HotIf

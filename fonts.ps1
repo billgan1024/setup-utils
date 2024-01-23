@@ -1,4 +1,4 @@
-. ./helper.ps1
+. ./get.ps1
 get "https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip"
 get "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip"
 Expand-Archive -Path JetBrainsMono-2.304.zip  -Force

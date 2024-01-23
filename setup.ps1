@@ -5,7 +5,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 }
 
 # https://stackoverflow.com/questions/6016436/in-powershell-how-do-i-define-a-function-in-a-file-and-call-it-from-the-powersh
-. ./helper.ps1
+. ./get.ps1
 . ./default_params.ps1
 
 Copy-Item .vimrc ~/.vimrc
@@ -18,9 +18,9 @@ reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\
 ./fonts.ps1
 
 
-$out = "C:/Users/$env:USERNAME/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
+$out = "C:/Users/$env:USERNAME/Documents/PowerShell/Profile.ps1"
 New-Item $out
 Copy-Item profile.ps1 $out
 
-Get-Content .\default_params.ps1 | Out-File -Append $out
-Get-Content .\helper.ps1 | Out-File -Append $out
+Get-Content .\default_params.ps1 >> $out
+Get-Content .\get.ps1 >> $out
