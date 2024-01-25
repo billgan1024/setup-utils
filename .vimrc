@@ -5,3 +5,4 @@ noremap m $
 noremap q <C-v>
 noremap H ,
 noremap L ;
+set belloff=esc

@@ -18,9 +18,5 @@ reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\
 ./fonts.ps1
 
 
-$out = "C:/Users/$env:USERNAME/Documents/PowerShell/Profile.ps1"
-New-Item $out
-Copy-Item profile.ps1 $out
+./setup-profile.ps1
 
-Get-Content .\default_params.ps1 >> $out
-Get-Content .\get.ps1 >> $out

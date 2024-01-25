@@ -8,8 +8,8 @@ function get {
     if (!$out) {
         $out = $url.Split("/")[-1]
     }
-    invoke-webrequest -uri $url -outfile $out
+    Invoke-WebRequest -Uri $url -OutFile $out
     if ($out.EndsWith(".exe") -or $out.EndsWith(".msi")) {
-        start-process -filepath $out -wait
+        Start-Process -FilePath $out -Wait
     }
 }

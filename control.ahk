@@ -23,6 +23,8 @@ RAlt & t::
         WinActivate("ahk_exe WindowsTerminal.exe")
     } else if WinExist("ahk_exe teams.exe") {
         WinActivate("ahk_exe teams.exe")
+    } else {
+        Run("wt")
     }
 }
 
@@ -59,7 +61,16 @@ RAlt & c::
     ; }
     ; WinGet, WinList, List, ahk_class PSDocC
     ; https://www.autohotkey.com/docs/v1/misc/WinTitle.htm#ahk_id
-    code()
+    if !WinExist("ahk_exe Code.exe") {
+        Run("wt")
+        Sleep("2000")
+        SendText("code")
+        Sleep("10")
+        Send("{Enter}")
+    }
+    else {
+        code()
+    }
 }
 
 code() {
@@ -313,6 +324,19 @@ c::
     Sleep(100)
     Send("F")
     autoclick := true
+}
+
+x:: {
+    global autoclick
+    autoclick := false
+    Send("5")
+    Sleep(50)
+    Send("{RButton Down}")
+    Sleep(1750)
+    Send("{RButton Up}")
+    Send("F")
+    autoclick := true
+
 }
 #HotIf
 
