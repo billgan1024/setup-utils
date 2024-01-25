@@ -55,27 +55,22 @@ UpdateCodeList() {
 code_index := 1
 RAlt & c::
 {
-    ; ; focus code
-    ; if WinExist("ahk_exe Code.exe") {
-    ;     WinActivate("ahk_exe Code.exe")
-    ; }
-    ; WinGet, WinList, List, ahk_class PSDocC
-    ; https://www.autohotkey.com/docs/v1/misc/WinTitle.htm#ahk_id
-    if !WinExist("ahk_exe Code.exe") {
-        Run("wt")
-        Sleep("2000")
-        SendText("code")
-        Sleep("10")
-        Send("{Enter}")
-    }
-    else {
-        code()
-    }
+    code()
 }
+
+F8:: {
+
+    ShellRun("C:\Users\" A_UserName "\code\utils\code.ps1")
+}
+
+
+; ralt + shift + c
 
 code() {
     if !WinExist("ahk_exe code.exe") {
-        Run("code")
+        ; Run("powershell")
+        ShellRun("C:\Users\" A_UserName "\code\utils\code.ps1")
+        ; ShellRun("C:\Users\" A_UserName "\AppData\Local\Programs\Microsoft VS Code\code.exe")
     }
     else {
         global code_index
