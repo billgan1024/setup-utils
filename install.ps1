@@ -11,6 +11,7 @@ get "https://downloader.battle.net/download/getInstallerForGame?os=win&gameProgr
 get "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x86" discord.exe
 get "https://us.download.nvidia.com/GFE/GFEClient/3.27.0.120/GeForce_Experience_v3.27.0.120.exe"
 get "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
+get "https://github.com/NickeManarin/ScreenToGif/releases/download/2.40.1/ScreenToGif.2.40.1.Setup.x64.msi"
 
 Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
 powershellget\Install-Module posh-git -Scope CurrentUser -Force

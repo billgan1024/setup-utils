@@ -20,11 +20,50 @@ RAlt & t::
 {
     ; terminal/teams
     if WinExist("ahk_exe WindowsTerminal.exe") {
-        WinActivate("ahk_exe WindowsTerminal.exe")
+        terminal()
     } else if WinExist("ahk_exe teams.exe") {
         WinActivate("ahk_exe teams.exe")
     } else {
         Run("wt")
+    }
+}
+; win+shift+s shortcut
+#+s::{
+    ShellRun("C:\Program Files\ScreenToGif\ScreenToGif.exe")
+}
+
+terminal_index := 1
+terminal_list := WinGetList("ahk_exe WindowsTerminal.exe")
+
+SetTimer(UpdateTerminalList, 1000)
+
+UpdateTerminalList() {
+    global terminal_list
+    global terminal_index
+    new_list := WinGetList("ahk_exe WindowsTerminal.exe")
+    if new_list.Length != terminal_list.Length {
+        terminal_list := new_list
+        if terminal_index > terminal_list.Length {
+            terminal_index := 1
+        }
+    }
+}
+
+terminal() {
+    if !WinExist("ahk_exe WindowsTerminal.exe") {
+        Run("wt.exe")
+    } else {
+        global terminal_index
+        global terminal_list
+        if !WinActive("ahk_exe WindowsTerminal.exe") {
+            WinActivate("ahk_id " terminal_list[terminal_index])
+        } else {
+            terminal_index++
+            if terminal_index == terminal_list.Length + 1 {
+                terminal_index := 1
+            }
+            WinActivate("ahk_id " terminal_list[terminal_index])
+        }
     }
 }
 
