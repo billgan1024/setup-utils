@@ -9,6 +9,11 @@ function gupd {
     git push
 }
 
+function gpristine {
+    git reset --hard
+    git clean -dffx
+}
+
 # function gcmsg {
 #     git commit -m "."
 # }
