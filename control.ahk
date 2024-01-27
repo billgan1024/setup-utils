@@ -6,7 +6,7 @@ g.AddText(, "ahk control panel")
 ; f1 := g.AddCheckbox("Checked", "F1 -> LButton")
 g.AddText(, "click delay")
 uhc := g.AddCheckbox("", "uhc mode")
-combo_x := g.AddCheckbox("", "combo x")
+combo := g.AddCheckbox("", "combo mode")
 
 click_delay := g.AddSlider("", 40)
 click_delay.OnEvent("Change", click_changed)
@@ -28,9 +28,9 @@ RAlt & t::
     }
 }
 ; win+shift+s shortcut
-#+s::{
-    ShellRun("C:\Program Files\ScreenToGif\ScreenToGif.exe")
-}
+; #+s::{
+;     ShellRun("C:\Program Files\ScreenToGif\ScreenToGif.exe")
+; }
 
 terminal_index := 1
 terminal_list := WinGetList("ahk_exe WindowsTerminal.exe")
@@ -94,13 +94,16 @@ UpdateCodeList() {
 code_index := 1
 RAlt & c::
 {
-    code()
+    if (GetKeyState("Shift")) {
+        ShellRun("C:\Users\" A_UserName "\code\utils\code.exe")
+    }
+    else {
+
+        code()
+    }
 }
 
-F8:: {
 
-    ShellRun("C:\Users\" A_UserName "\code\utils\code.ps1")
-}
 
 
 ; ralt + shift + c
@@ -207,11 +210,11 @@ F1::LButton
 ^p:: {
     Send("{F2}")
 }
-^LButton:: {
-    Send("{RButton}")
-    Sleep(50)
-    Send("o")
-}
+; ^LButton:: {
+;     Send("{RButton}")
+;     Sleep(50)
+;     Send("o")
+; }
 #HotIf
 #HotIf WinActive("ahk_exe devenv.exe")
 `::
@@ -419,11 +422,11 @@ AutoRight()
 
 #HotIf
 
-#HotIf combo_x.Value and WinActive("ahk_exe javaw.exe")
+#HotIf combo.Value and WinActive("ahk_exe javaw.exe")
 x::
 {
     global autoclick
-    autoclick := true
+    autoclick := false
     Send(3)
     Send("{RButton down}")
     Sleep(1750)
@@ -437,6 +440,27 @@ x::
     Sleep(200)
     autoclick := true
     return
+}
+
+2::{
+
+    global autoclick
+    autoclick := false
+    Send("2")
+    Sleep(50)
+    Send("{RButton Down}")
+    Sleep(1750)
+    Send("{RButton Up}")
+    Send("F")
+    autoclick := true
+
+}
+c:: {
+    Send("c")
+    Sleep(50)
+    Send("{RButton}")
+    Sleep(50)
+    Send("F")
 }
 #HotIf
 
