@@ -165,7 +165,12 @@ UpdateExplorerList() {
 
 explorer_index := 1
 RAlt & f:: {
-    explorer()
+    if GetKeyState("Shift") {
+        Run("explorer")
+    }
+    else {
+        explorer()
+    }
 }
 
 RAlt & d:: {
@@ -457,6 +462,13 @@ x::
 }
 c:: {
     Send("c")
+    Sleep(50)
+    Send("{RButton}")
+    Sleep(50)
+    Send("F")
+}
+4:: {
+    Send("4")
     Sleep(50)
     Send("{RButton}")
     Sleep(50)
