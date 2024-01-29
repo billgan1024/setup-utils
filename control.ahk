@@ -3,6 +3,9 @@ g.OnEvent("Close", close)
 g.SetFont("s16")
 
 g.AddText(, "ahk control panel")
+
+g.Show()
+
 ; f1 := g.AddCheckbox("Checked", "F1 -> LButton")
 g.AddText(, "click delay")
 uhc := g.AddCheckbox("", "uhc mode")
@@ -10,8 +13,6 @@ combo_x := g.AddCheckbox("", "combo x")
 
 click_delay := g.AddSlider("", 40)
 click_delay.OnEvent("Change", click_changed)
-
-g.Show()
 
 
 ; SetCapsLockState("AlwaysOff")
@@ -60,7 +61,7 @@ RAlt & c::
 
 F8:: {
 
-    ShellRun("C:\Users\" A_UserName "\code\utils\code.ps1")
+    ShellRun("C:\Users\" A_UserName "\code\setup-utils\code.ps1")
 }
 
 
