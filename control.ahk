@@ -244,16 +244,6 @@ F1::LButton
 {
     center_mouse()
 }
-F9::
-{
-    ; ctrl w
-    Send("^w")
-}
-F10::
-{
-    ; ctrl shift t
-    Send("^+t")
-}
 
 CoordMode("Mouse", "Window") ; coordinates are now relative to the current window
 #HotIf

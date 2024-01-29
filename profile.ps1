@@ -4,8 +4,12 @@ Import-Module posh-git
 
 # git-update for "git add ., git commit -m ., git push"
 function gupd {
+    # message parameter, default to "."
+    param (
+        [string]$message = "."
+    )
     git add .
-    git commit -m "."
+    git commit -m "$message"
     git push
 }
 
