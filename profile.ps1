@@ -6,7 +6,9 @@ Import-Module posh-git
 function gupd {
     # message parameter, default to "."
     param (
-        [string]$message = "."
+        # required parameter message
+        [Parameter(Mandatory=$true)]
+        [string]$message
     )
     git add .
     git commit -m "$message"
