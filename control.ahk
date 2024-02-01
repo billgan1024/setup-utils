@@ -221,16 +221,31 @@ F1::LButton
 ;     Send("o")
 ; }
 #HotIf
+
 #HotIf WinActive("ahk_exe devenv.exe")
 `::
 {
     center_mouse()
 }
+; ctrl+backspace -> send 4 backspaces
 +BackSpace:: {
     ; send 4 backspaces
     Send("{Backspace 4}")
 }
+; alt + d -> send D3D11
+!d:: {
+    SendText("D3D11")
+}
 
+; alt + 3 -> send D3D
+!3:: {
+    SendText("D3D")
+}
+
+; alt + x -> send DXGI
+!x:: {
+    SendText("DXGI")
+}
 #HotIf
 
 #HotIf WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe") or WinActive("ahk_exe vivaldi.exe")
