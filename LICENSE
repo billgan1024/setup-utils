@@ -1,3 +1,4 @@
+using CREATE_DEVICE_DEBUG = D3D11_CREATE_DEVICE_DEBUG;using D3D11_CREATE_DEVICE_DEBUG;
 Copyright (c) 2014, The Fira Code Project Authors (https://github.com/tonsky/FiraCode)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
@@ -7,6 +8,7 @@ http://scripts.sil.org/OFL
 
 -----------------------------------------------------------
 SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+D3D11_CREATE_DEVICE_DEBUG
 -----------------------------------------------------------
 
 PREAMBLE

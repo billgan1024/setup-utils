@@ -15,6 +15,16 @@ function gupd {
     git push
 }
 
+function gcl {
+    # git clone recursive
+    param (
+        # required parameter message
+        [Parameter(Mandatory=$true)]
+        [string]$url
+    )
+    git clone --recursive $url
+}
+
 function gpristine {
     git reset --hard
     git clean -dffx

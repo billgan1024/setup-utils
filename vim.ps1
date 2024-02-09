@@ -1,12 +1,10 @@
 
-Copy-Item .vimrc ~/.vimrc
+cp .vimrc ~/.vimrc
 
+cp .vimrc ~/.vsvimrc
 
-Copy-Item .vsvimrc ~/.vsvimrc
-
-
-# add-content will automatically create newlines
-Add-Content -Path ~/.vsvimrc -Value (Get-Content .vimrc)
+# # add-content will automatically create newlines
+# Add-Content -Path ~/.vsvimrc -Value (Get-Content .vimrc)
 
 # Get-Content .vimrc >> ~/.vsvimrc
 

@@ -18,13 +18,16 @@ g.Show()
 
 RAlt & t::
 {
-    ; terminal/teams
-    if WinExist("ahk_exe WindowsTerminal.exe") {
-        terminal()
-    } else if WinExist("ahk_exe teams.exe") {
-        WinActivate("ahk_exe teams.exe")
-    } else {
-        Run("wt")
+    ; if shift is pressed, start wt
+    if (GetKeyState("Shift")) {
+        Run("wt.exe")
+    }
+    else {
+        if WinExist("ahk_exe WindowsTerminal.exe") {
+            terminal()
+        } else if WinExist("ahk_exe teams.exe") {
+            WinActivate("ahk_exe teams.exe")
+        }
     }
 }
 ; win+shift+s shortcut
@@ -102,8 +105,6 @@ RAlt & c::
         code()
     }
 }
-
-
 
 
 ; ralt + shift + c
@@ -227,25 +228,28 @@ F1::LButton
 {
     center_mouse()
 }
-; ctrl+backspace -> send 4 backspaces
-+BackSpace:: {
-    ; send 4 backspaces
-    Send("{Backspace 4}")
-}
+; ; ctrl+backspace -> send 4 backspaces
+; +BackSpace:: {
+;     ; send 4 backspaces
+;     Send("{Backspace 4}")
+; }
 ; alt + d -> send D3D11
-!d:: {
+Alt & d:: {
     SendText("D3D11")
 }
 
 ; alt + 3 -> send D3D
-!3:: {
+Alt & 3:: {
     SendText("D3D")
 }
 
 ; alt + x -> send DXGI
-!x:: {
+Alt & x:: {
     SendText("DXGI")
 }
+
+; ctrl+alt+enter -> alt+a
+^!Enter::!a
 #HotIf
 
 #HotIf WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe") or WinActive("ahk_exe vivaldi.exe")
@@ -278,17 +282,9 @@ LWin::MButton
 #HotIf
 
 ; in vscode, f9 -> ctrl+shift+f9, then wait 1 second and press f9
-#HotIf WinActive("ahk_exe Code.exe") or WinActive("ahk_exe devenv.exe")
-F9::
-{
-    Send("^+{F9}")
-    Sleep(50)
-    if WinActive("ahk_exe devenv.exe") {
-        Send("{Enter}")
-        Sleep(50)
-    }
-    Send("{F9}")
-}
+#HotIf WinActive("ahk_exe Code.exe")
+
+!Space:: Return ; ! stands for Alt key
 #HotIf
 
 #HotIf WinActive("ahk_exe Code.exe") or WinActive("ahk_exe devenv.exe") or WinActive("ahk_exe vivaldi.exe")
@@ -410,7 +406,12 @@ XButton2::
 {
     Send("t")
     Sleep(100)
-    SendText("/play duels_combo_duel")
+    if uhc.Value {
+        SendText("/play duels_uhc_duel")
+    }
+    else {
+        SendText("/play duels_combo_duel")
+    }
     Sleep(100)
     Send("{Enter}")
 }
@@ -452,7 +453,7 @@ x::
     return
 }
 
-2::{
+2:: {
 
     global autoclick
     autoclick := false
