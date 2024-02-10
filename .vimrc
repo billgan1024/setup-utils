@@ -7,9 +7,7 @@ noremap ^ n
 noremap m $
 noremap $ m
 noremap q <C-v>
-noremap H 3gh
-noremap L 3gl
-noremap h gh
-noremap l gl
+noremap H 5h
+noremap L 5l
 noremap s vi
 set belloff=esc
