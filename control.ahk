@@ -222,10 +222,18 @@ F1::LButton
 ;     Send("o")
 ; }
 #HotIf
+#HotIf WinActive("ahk_exe PDFAnnotator.exe")
+; mouse wheel -> 5x scroll speed
+WheelUp:: {
+    Send("{WheelUp 8}")
+}
+WheelDown:: {
+    Send("{WheelDown 8}")
+}
+#HotIf
 
 #HotIf WinActive("ahk_exe devenv.exe")
-`::
-{
+`:: {
     center_mouse()
 }
 ; ; ctrl+backspace -> send 4 backspaces

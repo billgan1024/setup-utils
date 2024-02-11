@@ -2,7 +2,6 @@
 
 if (Get-Process -Name "AutoHotKey64") {
     Stop-Process -Name "AutoHotKey64"
-
 }
 
 ./control.ahk

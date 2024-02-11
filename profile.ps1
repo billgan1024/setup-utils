@@ -7,7 +7,7 @@ function gupd {
     # message parameter, default to "."
     param (
         # required parameter message
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$message
     )
     git add .
@@ -19,7 +19,7 @@ function gcl {
     # git clone recursive
     param (
         # required parameter message
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$url
     )
     git clone --recursive $url
@@ -35,3 +35,6 @@ function gpristine {
 # }
 # cd code
 # & "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Launch-VsDevShell.ps1" -SkipAutomaticLocation -Arch amd64
+
+
+$GlobalPSScriptAnalyzerSettingsPath = "C:/Users/$env:USERNAME/Documents/PowerShell/PSScriptAnalyzerSettings.psd1"
