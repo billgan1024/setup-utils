@@ -38,3 +38,10 @@ function gpristine {
 
 
 $GlobalPSScriptAnalyzerSettingsPath = "C:/Users/$env:USERNAME/Documents/PowerShell/PSScriptAnalyzerSettings.psd1"
+
+# 
+# New-Alias gn "git number"
+
+function gn {
+    git number $args
+}
